@@ -1,13 +1,6 @@
 ({
-    doInit: function (cmp, event, helper) {
-        var action = cmp.get("c.getAccounts");
-        action.setCallback(this, function (response) {
-            var state = response.getState();
-            if (state === "SUCCESS") {
-                cmp.set("v.accList", response.getReturnValue());
-            }
-        });
-        $A.enqueueAction(action);
+    doInit: function (component, event, helper) {
+        helper.loadData(component, event, helper);
     },
     handleClick: function (component, event, helper) {
         $A.createComponent("c:cmp_AccountEdit", { recordId: event.getSource().get('v.value') },
@@ -18,7 +11,9 @@
                         body: content,
                         showCloseButton: true,
                         cssClass: "mymodal",
-
+                        closeCallback: function () {
+                            helper.loadData(component, event, helper);
+                        }
                     })
                 }
             });
