@@ -1,0 +1,37 @@
+<aura:component controller="ContactAura" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global">
+		<aura:attribute name="contactRows" type="Object[]"/>
+		<aura:attribute name="Header" type="String"/>
+		<aura:attribute name="SubHeader" type="String"/>
+		
+		<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+  		<aura:handler name="init" value="{!v.Header}" action="{!c.getHeader}" />
+    	<!--<aura:handler name="init" value="{!v.SubHeader}" action="{!c.doInit}" />-->
+		<div class="container">
+			<p>
+				<b> List of Contacts 
+					<!-- with the dynamic Header what user will Give --> 
+					-- {!v.Header} --
+				</b>
+                <b> List of Contacts 
+					<!-- with the dynamic Header what user will Give --> 
+					-- {!v.SubHeader} --
+				</b>
+			</p>
+			<table class="slds-table slds-table_bordered slds-table_cell-buffer">
+				<thead>
+					<tr>
+						<th><strong> Id </strong></th>
+						<th> <strong>  Name </strong> </th>
+					</tr>
+				</thead>
+				<tbody>
+					<aura:iteration var="cell" items="{!v.contactRows}">
+						<tr>
+							<td> <a href="{! '/'+cell.Id}"> {!cell.Id} </a> </td>
+							<td> {!cell.Name}  </td>
+						</tr>
+					</aura:iteration>
+				</tbody>
+			</table>
+		</div>
+	</aura:component>

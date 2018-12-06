@@ -1,0 +1,31 @@
+<aura:component controller="My_pagination">
+    <aura:attribute name="strFieldPath" type="String" />
+    <aura:attribute name="objSingleRecord" type="Object[]"/>
+    <aura:attribute name="tdData" type="String"  />
+    <aura:attribute name="username" type="String" />
+    <aura:attribute name="isTrue" type="boolean" default="false"/>
+    <aura:attribute name="conId" type="boolean" default="false"/>
+    <aura:attribute name="hideContactId" type="String"/>
+    <aura:attribute name="otherData" type="boolean" default="false"/>
+    <aura:attribute name="strModifiedId" type="String"/>
+    <aura:attribute name="strFieldType" type="String" />
+    <aura:attribute name="mappicklistval1" type="Map" />
+
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>  
+    
+    <aura:if isTrue="{!v.isTrue}">
+        <ui:outputURL value="{!'/one/one.app?#/sObject/'+ v.strModifiedId + '/view'}" target="_blank" label="{!v.username}"/>
+    </aura:if>
+    <aura:if isTrue="{!v.conId}">
+        <ui:outputURL value="{!'/one/one.app?#/sObject/'+ v.hideContactId + '/view'}" target="_blank" label="{!v.tdData}"/>
+    </aura:if>
+    <aura:if isTrue="{!v.otherData}">
+            {!v.tdData}
+    </aura:if>
+    <!--  <ui:inputSelect aura:id="levels" label="Contact Levels" change="{!c.onSelectChange}">
+        <aura:iteration items="{!v.contactLevel}" var="level">
+             <ui:inputSelectOption text="{!level}" label="{!level}"/>
+        </aura:iteration>
+    </ui:inputSelect> -->
+</aura:component>

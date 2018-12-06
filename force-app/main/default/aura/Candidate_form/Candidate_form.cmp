@@ -1,0 +1,75 @@
+<aura:component controller="Candidate" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global">
+    <aura:attribute name="CanObject" type="Cus_Candidate__c" default="{'sobjectType' : 'Cus_Candidate__c'
+                                                                      ,'LastName__c':''
+                                                                      ,'Age__c':''
+                                                                      ,'Email__c':''
+                                                                      ,'Address__c':''
+                                                                      ,'Course__c':''
+                                                                      ,'Skills__c':''
+                                                                      }"/>   
+    <aura:attribute name="response" type="Boolean" default="{'response':'false'}"/>    
+    <form>
+        <div class="slds-form slds-form_stacked">
+            <div class="slds-form-element">
+                
+                <p>{!v.errors}</p>
+            </div>
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="input-id-01">First Name</label>
+                <div class="slds-form-element__control">
+                    <ui:inputText value="{!v.CanObject.FirstName__c}"  aura:id="fn" placeholder="Enter Your First Name" />
+                </div>
+            </div>
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="input-id-01">Last Name</label>
+                <div class="slds-form-element__control">
+                    <ui:inputText value="{!v.CanObject.LastName__c}" aura:id="ln" placeholder="Enter Your Last Name"/>
+                </div>
+            </div>
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="input-id-01">Age</label>
+                <div class="slds-form-element__control">
+                    <ui:inputNumber value="{!v.CanObject.Age__c}" aura:id="age" placeholder="Enter Your Age"/>
+                </div>
+            </div>
+             <div class="slds-form-element">
+                <label class="slds-form-element__label" for="input-id-01">Email</label>
+                <div class="slds-form-element__control">
+                    <ui:inputEmail value="{!v.CanObject.Email__c}" aura:id="email" placeholder="Enter Your Email"/>
+                </div>
+            </div>
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="input-id-01" >Address</label>
+                <div class="slds-form-element__control">
+                    <ui:inputTextArea value="{!v.CanObject.Address__c}" aura:id="address" placeholder="Enter Your Address"/>
+                </div>
+            </div>
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="input-id-01" >Course</label>
+                <div class="slds-form-element__control">
+                    <ui:inputSelect value="{!v.CanObject.Course__c}" aura:id="course" >
+                        <ui:inputSelectOption text="Java" label="Java" value="true"/>
+                        <ui:inputSelectOption text="C" label="c"/>
+                        <ui:inputSelectOption text="Salesforce" label="Salesforce"/>
+                    </ui:inputSelect>
+                </div>
+            </div>
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="input-id-01" >Skill</label>
+                <div class="slds-form-element__control">
+                    <ui:inputSelect value="{!v.CanObject.Skills__c}" aura:id="skill" multiple="true">
+                        <ui:inputSelectOption text="Java" label="Java" />
+                        <ui:inputSelectOption text="Salesforce" label="Salesforce"/>
+                        <ui:inputSelectOption text="C" label="c"/>
+                        <ui:inputSelectOption text="C++" label="c++"/>
+                    </ui:inputSelect>
+                </div>
+            </div>
+            <div class="slds-form-element">
+                <div class="slds-form-element__control">
+                    <ui:button label="submit" press="{!c.saveRecord}"  class=".slds-button__icon_stateful"/>
+                </div>
+            </div>
+        </div>
+    </form>
+</aura:component>

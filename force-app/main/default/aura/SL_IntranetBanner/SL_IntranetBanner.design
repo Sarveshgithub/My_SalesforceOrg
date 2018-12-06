@@ -1,0 +1,38 @@
+<design:component label="Silverline Banner">
+    <design:attribute name="targetfolder" label="Image folder" description="The Salesforce ID of the documents folder from which images will be displayed."/>
+    <design:attribute name="backgroundcolor" label="Background color" description="Background color of the component. The default is white. You can enter color names or hex values such as #16325C" />
+    <design:attribute name="fontcolor" label="Font color" description="Font color of the description text. The default is black. You can enter color names or hex values such as #16325C" />
+    <design:attribute name="fontstyle" label="Font style" description="Font style of the description text. Valid values are normal, italic, oblique. Only one value allowed at a time." />
+    <design:attribute name="transitiontype" label="Transition type" datasource="FadeIn,FadeOut" default="FadeIn" description="Type of transition from one image to the next. Valid values are: FadeIn,FadeOut." />
+    <design:attribute name="trasnitionseconds" label="Transition interval" description="Time between image transitions in seconds." />
+    <design:attribute name="widgetHeight" label="Height" description="Height of the component in the page in pixels. The maximum allowed value is 1000 and minimum is 50." />
+    <design:attribute name="heading" label="Heading" default="Silverline Banner" description="Heading displayed for the component." />    
+    <design:attribute name="allowHTMLLinks" label="Allow HTML Links In Description" description="If enabled links will work in the description" />
+    <design:attribute name="showborder" label="Show border" description="Show a border for the component." />
+    <design:attribute name="showthumbnail" label="Show thumbnail" description="Show thumbnails of the gallery below the currently displaying image." />
+    <design:attribute name="showdescription" label="Show image description" description="Show the description of the image." />
+	<design:attribute name="ComponentPlacement" label="Component Placement" datasource="Main, Sidebar" required="true" description="The area where you have placed the component, either Main or Sidebar."/>
+
+    
+    <!--
+	* Commenting this part as said in google Sheets
+    * Might be in use for later point of time
+    <design:attribute name="descriptionmaxheight" label="Description max height" description="Please specify the image description max height" />
+    <design:attribute name="noOfThumbNails" label="Number of thumbnails" description="Please specify the number of thumbnails to display" />
+	-->
+    
+    <design:attribute name="image1" label="Slide 1" default="https://silverline--c.na20.content.force.com/servlet/servlet.ImageServer?id=015140000038NZ2&amp;oid=00D300000006fTZ" description="External Link from which to display image 1. Works only when Image folder is not provided."/>
+    <design:attribute name="description1" label="Slide 1 Description" description="Description text of external image 1. Works only when Image folder is not provided."/>
+    
+    <design:attribute name="image2" label="Slide 2" default="https://silverline--c.na20.content.force.com/servlet/servlet.ImageServer?id=015140000038NZ7&amp;oid=00D300000006fTZ" description="External Link from which to display image 2. Works only when Image folder is not provided."/>
+    <design:attribute name="description2" label="Slide 2 Description" description="Description text of external image 2. Works only when Image folder is not provided."/>
+    
+    <design:attribute name="image3" label="Slide 3" default="https://silverline--c.na20.content.force.com/servlet/servlet.ImageServer?id=015140000038NZH&amp;oid=00D300000006fTZ" description="External Link from which to display image 3. Works only when Image folder is not provided."/>
+    <design:attribute name="description3" label="Slide 3 Description" description="Description text of external image 3. Works only when Image folder is not provided."/>
+    
+    <design:attribute name="image4" label="Slide 4" default="https://silverline--c.na20.content.force.com/servlet/servlet.ImageServer?id=015140000038NZW&amp;oid=00D300000006fTZ" description="External Link from which to display image 4. Works only when Image folder is not provided."/>
+    <design:attribute name="description4" label="Slide 4 Description" description="Description text of external image 4. Works only when Image folder is not provided."/>
+    
+    <design:attribute name="image5" label="Slide 5" description="External Link from which to display image 5. Works only when Image folder is not provided."/>    
+    <design:attribute name="description5" label="Slide 5 Description" description="Description text of external image 5. Works only when Image folder is not provided."/>
+</design:component>

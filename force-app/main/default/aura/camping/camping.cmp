@@ -1,0 +1,6 @@
+<aura:component >
+    <aura:attribute name="message" type="String"/>
+    <c:campingList />
+    <c:camping message="{!v.message}"/>
+    <p>This message come from the aura attribute {!v.message}</p>
+</aura:component>

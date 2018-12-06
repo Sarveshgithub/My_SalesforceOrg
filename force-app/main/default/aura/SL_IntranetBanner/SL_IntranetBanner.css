@@ -1,0 +1,72 @@
+.THIS .banner {
+    background-position:center center;
+    background-size:contain;
+    background-repeat:no-repeat;
+}
+.THIS .thumbnails {
+    background-position:center center;
+    background-size:cover;
+    background-repeat:no-repeat;
+}
+.THIS .card__header {
+    margin-bottom: 8px;
+}
+.THIS .header-label {
+    font-size: 1.125rem;
+    color: rgb(22, 50, 92);
+    white-space: normal;
+    font-family: 'SalesforceSans-Light',Arial,sans-serif;
+    margin-top: 15px;
+}
+.THIS .fontVal {
+    font-family:'SalesforceSans-Regular',Arial,sans-serif;
+    font-size: .875rem;    
+}
+.THIS .sliderContainer {
+    position: relative; 
+    top:0px;
+    left: 0px; 
+    overflow: hidden;
+}
+.THIS .sliderContainer .jssorImageContainer {
+    cursor:default; 
+    position: absolute; 
+    left: 0px; 
+    top: 0px; 
+    overflow: hidden;
+}
+.THIS .sliderContainer .sliderContainer {
+    border: 0px !important;
+}
+.THIS .sliderImage {
+    padding-top:6px;
+}
+.THIS .thumbnailTemplate { 
+    position:absolute;
+    border:none; 
+    top: 0; 
+    left: 0;    
+}
+.THIS .imageDescription {
+    word-break: break-word;
+    text-align:center;
+    overflow:hidden;
+    text-overflow:ellipses;
+}
+.THIS .addOpacityZero {
+    opacity: 0.1;
+}
+.THIS .addOpacityOne {
+    opacity: 1;
+}
+.THIS .visible {  
+    opacity: 1;
+    transition: opacity 2s linear;
+}
+.THIS .hidden {  
+    opacity: 0.2;
+    transition: visibility 0s 2s, opacity 2s linear;
+}
+.THIS .hideButton {
+    display : none;
+}

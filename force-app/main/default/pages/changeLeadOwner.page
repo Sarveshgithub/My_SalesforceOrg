@@ -1,0 +1,39 @@
+<apex:page standardController="Lead" recordSetVar="ctlr" extensions="changeLeadOwner" tabStyle="Lead" lightningStylesheets="true">    
+    <apex:form >
+        <style>
+            select {height : 2rem;}
+        </style>
+        <apex:pageBlock rendered="{!ISBLANK(selected)}">
+            <apex:slds >
+                <div style="text-align: right">
+                    <apex:commandButton value="Back" action="{!cancelAction}"/>
+                </div>
+                <br/><br/>
+                <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
+                    <apex:outputText >Select at least one record and try again.</apex:outputText>
+                </div>
+            </apex:slds>
+        </apex:pageBlock>
+		<apex:outputPanel rendered="{!NOT(ISBLANK(selected))}">
+		    <apex:sectionHeader title="Powered by Trekbin" subtitle="Change Lead Owner"/>
+			<apex:outputText >
+				<p>This screen allows you to transfer ownership of a lead to another user or queue. When you transfer ownership of a lead, the new owner will own:</p>
+				<p>• All notes and attachments recorded for the current owner</p>
+				<p>• All open activities (tasks and events) owned by the current owner</p>
+				<p>Note that completed activities and open activities owned by other users will not be transferred.</p>
+			</apex:outputText>
+			<apex:pageBlock >
+				<apex:pageBlockSection title="Select New Owner" collapsible="false" columns="3">
+					<apex:pageBlockSectionItem >
+						<apex:inputField value="{!objLead.OwnerId}"/>
+					</apex:pageBlockSectionItem>
+				</apex:pageBlockSection>       
+				<apex:inputCheckbox selected="false" value="{!boolSendEmailOptionchk}" />Send Notification Email
+				<apex:pageblockButtons location="bottom">
+					<apex:commandButton value="Save" action="{!updateLeadOwnerAction}"/>
+					<apex:commandButton action="{!cancelAction}" value="Cancel" immediate="true"/>
+				</apex:pageblockButtons>
+			</apex:pageBlock>
+		</apex:outputPanel>
+    </apex:form>      
+</apex:page>

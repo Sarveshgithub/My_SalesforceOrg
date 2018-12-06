@@ -1,0 +1,28 @@
+<aura:component >
+    <aura:attribute name="strlabel" type="String"/>
+    <aura:attribute name="strFieldName" type="String"/>
+    <aura:attribute name="arrowdown" type="boolean" />
+    <aura:attribute name="arrowup" type="boolean"/>     
+    <!--<aura:attribute name="strSortBy" type="String" default=" "/>-->
+    
+    <aura:attribute name="strOrderBy" type="String"/>
+
+    <aura:registerEvent name="cmpEvent" type="c:My_paginationSortEvent"/>
+    
+	 <div class="slds-truncate" title="Name"  onclick="{!c.orderByCol}">{!v.strlabel}
+
+	    <aura:if isTrue="{!v.arrowup}">
+	       
+	       <lightning:icon iconName="utility:arrowup"   size="small" alternativeText="Indicates approval"/>
+
+	    </aura:if>   
+
+		<aura:if isTrue="{!v.arrowdown}">
+	   
+	   	   <lightning:icon iconName="utility:arrowdown" size="small" alternativeText="Indicates approval"/>
+
+	   	</aura:if> 
+
+	 </div>
+
+</aura:component>

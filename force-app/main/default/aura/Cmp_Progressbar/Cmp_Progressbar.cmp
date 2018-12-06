@@ -1,0 +1,44 @@
+<aura:component controller="proController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global">
+	<aura:attribute name="Header" type="String"/>
+    <aura:attribute name="SubHeader" type="String"/>
+    <aura:attribute name="picklistData" type="Object[]"/>
+    <!--<aura:attribute name="objNew" type="{!v.Header}">-->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <div class="container">
+			<p>
+				<b> Object Name 
+					<!-- with the dynamic Header what user will Give --> 
+					-- {!v.Header} --
+				</b>
+        </p>
+        <p>
+                <b> Api Name 
+					<!-- with the dynamic Header what user will Give --> 
+					-- {!v.SubHeader} --
+				</b>
+			</p>
+        <p>
+        </p>
+    </div>
+    <aura:iteration var="cell" items="{!v.picklistData}">
+    <div class="stage">
+       <a><p class="p1">{!cell}</p></a> 
+    </div>
+        </aura:iteration>
+    <!--<table class="slds-table slds-table_bordered slds-table_cell-buffer">
+				<thead>
+					<tr>
+						<th><strong> Id </strong></th>
+						<th> <strong>  Name </strong> </th>
+					</tr>
+				</thead>
+				<tbody>
+					<aura:iteration var="cell" items="{!v.picklistData}">
+						<tr>
+							<td> <a href="{! '/'+cell.Id}"> {!cell} </a> </td>
+							
+						</tr>
+					</aura:iteration>
+				</tbody>
+			</table>-->
+</aura:component>

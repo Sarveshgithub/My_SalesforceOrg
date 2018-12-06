@@ -1,0 +1,12 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+<div class="o-container">
+<div class="slds-grid slds-gutters">
+  <div class="slds-col slds-size_2-of-3">
+    <lightning:input name="input3" label="Record ID" placeholder="Enter Redord Id"/>
+  </div>
+  <div class="slds-col slds-size_1-of-3">
+   <lightning:button variant="brand" label="Brand action" title="Brand action" onclick="{! c.handleClick }" />
+  </div>
+</div>
+</div>
+</aura:component>

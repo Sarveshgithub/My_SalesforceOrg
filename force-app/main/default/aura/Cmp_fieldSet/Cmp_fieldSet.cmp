@@ -1,0 +1,18 @@
+<aura:component controller="SL_RecordDataController" implements="forceCommunity:availableForAllPageTypes,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global">		
+    
+    <aura:handler name="init" value="{!this}" action="{!c.loadData}"/> 
+    <aura:attribute name="objName" type="String"/>
+    
+    <aura:attribute name="lstFieldset" Description="fieldset" type="Object[]" />
+    <aura:attribute name="recordId" type="String" description="Id of record on which this component is hosted." />
+    <aura:attribute name="objSObject" type="SObject"  />
+    <aura:attribute name="strSubmitVal" type="String" />
+    <span><strong><h1>Data display from fieldSet</h1></strong></span><br></br> 
+    
+    <aura:iteration items="{!v.lstFieldset}" var="field">
+        <c:SL_cmp_DisplayField objSObject="{!v.objSObject}"
+                               strFieldAPIName="{!field.fieldPath}" strFieldLabel="{!field.label}" strType="{!field.type}" />
+        <br/>
+    </aura:iteration>
+    <lightning:button variant="brand"  label="Save" onclick="{!c.onSubmit}"/>
+</aura:component>

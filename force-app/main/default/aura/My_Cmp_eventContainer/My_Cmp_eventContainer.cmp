@@ -1,0 +1,3 @@
+<aura:component >
+    <c:My_Cmp_eventHandler />
+</aura:component>

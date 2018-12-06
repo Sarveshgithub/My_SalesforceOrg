@@ -1,0 +1,5 @@
+<design:component>
+	<design:attribute name="object" default="Contact" required="true"/>
+    <design:attribute name="fieldSetName" default="contact_field" required="true"/>
+    <design:attribute name="prev" required="true"/>
+</design:component>

@@ -1,0 +1,82 @@
+<aura:component controller="SL_AccountSortingController" implements="flexipage:availableForAllPageTypes,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global">
+
+    
+    <aura:attribute name="lstContact" type="List" default="[{'Id':'dfd','Name':'Sarvesh'}]"/>
+    <aura:attribute name="progress" type="String" default="width:0%"/>
+    <aura:attribute name="Step1" type="String" Default="- Active" />
+    <aura:attribute name="Step2" type="List" Default="" /> 
+    <aura:attribute name="objContact" type="Contact" Default="" />     
+    <aura:attribute name="isEdit" type="Boolean" Default="False" />       
+        <aura:attribute name="objId" type="Id"/>       
+    
+    <aura:attribute name="isParentBool" type="Boolean" default="true"/>       
+    <!--<aura:handler name="init" value="{!this}" action="{!c.loadData}"/> --> 
+	<h2 style="text-align:center;font-size:18px;">Contact Lists Display</h2>
+	<div style="border:1px solid lightgray;">
+		<br/>
+    <div class="slds-progress">
+        <ol class="slds-progress__list">
+
+            <li aura:id="changeIt1" class="slds-progress__item slds-is-active">
+                <button class="slds-button slds-progress__marker">
+                    <span class="slds-assistive-text">Step 1</span>
+                </button>
+            </li>
+            <li aura:id="changeIt2" class="slds-progress__item">
+                <button class="slds-button slds-progress__marker">
+                    <span class="slds-assistive-text">Step 2</span>
+                </button>
+            </li>
+            <li class="slds-progress__item" aura:id="changeIt3">
+                <button class="slds-button slds-progress__marker">
+                    <span class="slds-assistive-text">Step 3 </span>
+                </button>
+            </li>
+        </ol>
+        <div class="slds-progress-bar slds-progress-bar_x-small" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" role="progressbar">
+            <span class="slds-progress-bar__value" aura:id="changeIt" style="{!v.progress}">
+                <span class="slds-assistive-text">Progress</span>
+            </span>
+        </div>
+    </div>
+     <aura:if isTrue="{!v.isParentBool}">
+    <aura:if isTrue="{!!v.isEdit}">
+        <aura:iteration items="{!v.lstContact}" var="objWrapper">  
+            <div class="slds-text-align_left" role="gridcell" style="margin-left:10px;margin-top:20px;">
+                <label class="uiLabel-left form-element__label uiLabel" aura:id="labelId">
+            
+                <input type= "radio" name="Role" onclick="{!c.ChangeState}" aura:id="radioIds" data-recId="{!objWrapper.Id}" 
+                data-recName="{!objWrapper.Name}"/>
+                <span style="margin-left:7px;">{!objWrapper.Name}</span>
+                </label>
+            </div>    
+        </aura:iteration>
+        <aura:set attribute="else">
+                 
+         <force:recordEdit aura:id="edit" recordId="{!v.objId}" />
+         <ui:button label="Save" press="{!c.save}" class="slds-align_absolute-center"/>
+            <br/>
+     	</aura:set>    
+     	<br/>
+     	
+    </aura:if> 
+         <aura:set attribute="else">
+             <div class="demo-only" style="height: 4rem;">
+  <div class="slds-notify_container slds-is-relative">
+    <div class="slds-notify slds-notify_toast slds-theme_success" role="alert">
+      <span class="slds-assistive-text">
+        </span>
+      <span class="slds-icon_container slds-icon-utility-success slds-m-right_small slds-no-flex slds-align-top" title="Description of icon when needed">
+          <lightning:icon iconName="utility:success" />
+      </span>
+        <div class="slds-notify__content">
+        <h2 class="slds-text-heading_small ">Contact <a href="javascript:void(0);"></a>was updated.</h2>
+      </div>
+      </div>
+                 </div>
+             </div>
+
+         </aura:set>
+    </aura:if>
+</div>
+</aura:component>

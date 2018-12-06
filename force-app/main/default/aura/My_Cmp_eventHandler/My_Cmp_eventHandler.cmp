@@ -1,0 +1,19 @@
+<aura:component >
+    <aura:attribute name="messageFromEvent" type="String"/>
+    <aura:attribute name="numEvents" type="Integer" default="0"/>
+    <aura:attribute name="strDisplay" type="String" />
+    
+    <aura:handler name="cmpEvent1" event="c:My_CmpEvent" action="{!c.handleApplicationEvent}"/>
+    
+    <!--<aura:handler name="cmpEvent" event="c:My_AppEvent" action="{!c.handleApplicationEvent}"/>-->
+    <div class="slds-box" style="height:500px;">
+        <p>{!v.strDisplay} </p>
+        
+        <c:My_Cmp_event />
+    </div>
+    
+        
+    
+    
+    
+</aura:component>

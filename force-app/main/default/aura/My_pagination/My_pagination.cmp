@@ -1,0 +1,117 @@
+<aura:component controller="My_pagination" implements="forceCommunity:availableForAllPageTypes,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global">
+<aura:attribute name="intOffset" type="Integer" default="0"/>
+<!--<aura:attribute name="objContact" type="Object[]" />-->
+<aura:attribute name="prev"         type="boolean"  default="true"/>
+<aura:attribute name="next"         type="boolean"                />
+<aura:attribute name="first"        type="boolean"  default="true"/>
+<aura:attribute name="last"         type="boolean"                />
+<aura:attribute name="valueOflast"  type="Object"                 />
+<aura:attribute name="numerator"    type="Integer"  default="1"   />
+<aura:attribute name="denominator"  type="Integer"                />
+<aura:attribute name="colLabel"     type="String"                 />
+<aura:attribute name="strcolLabel"  type="String"   default="Name"/> 
+<aura:attribute name="strOrderBy"   type="String"   default="ASC" />
+<aura:attribute name="lstFields"    type="Object[]" access="public"/>
+<aura:attribute name="lstSObject"   type="Object[]" access="public"/>
+<aura:attribute name="Spinner"      type="boolean"  default="false"/>
+<aura:attribute name="arrowUp"      type="boolean"  default="false"/>
+<aura:attribute name="arrowDown"    type="boolean"  default="false"/>
+<aura:attribute name="arrowSorting" type="boolean"  default="false"/>
+<aura:attribute name="mappicklistval" type="Map"  />
+
+<aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+<aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+<aura:handler name="init" value="{!this}" action="{!c.loadData}"/>
+
+<aura:if isTrue="{!v.Spinner}">
+<div aura:id="spinnerId" class="slds-spinner_container">
+   <div class="slds-spinner--brand  slds-spinner slds-spinner_medium slds-is-relative" role="alert">
+     <span class="slds-assistive-text">Loading</span>
+     <div class="slds-spinner__dot-a"></div>
+     <div class="slds-spinner__dot-b"></div>
+   </div>
+</div>
+</aura:if>
+
+
+<article class="slds-card">
+    <div class="slds-card__header slds-grid">
+        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+            <div class="slds-media__figure">
+                <lightning:icon iconName="standard:contact" size="medium" alternativeText="Indicates approval"/>
+            </div>
+            <div class="slds-media__body">
+                <h2>
+                    <a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="[object Object]">
+                        <span class="slds-text-heading_small">Contacts</span>
+                    </a>
+                </h2>
+            </div>
+        </header>
+        <div class="slds-no-flex">
+            <button class="slds-button slds-button_neutral">New</button>
+        </div>
+    </div>
+    <div class="slds-card__body slds-table_edit_container slds-is-relative">
+        <table class="slds-table slds-table_fixed-layout slds-table_bordered slds-no-row-hover slds-table_cell-buffer">
+            <thead>
+                <tr class="slds-text-title_caps">
+                    <aura:iteration items="{!v.lstFields}" var="item">
+                        <th aria-sort="none" class="slds-is-sortable slds-is-resizable slds-text-title_caps" aria-label="Name" scope="col">
+                            <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" tabindex="-1"   >
+                                 <span class="slds-assistive-text">Sort by: </span>
+                                 <span class="slds-truncate" onclick="{!c.onclick}" id='{!item.fieldPath}'>{!item.label}</span>
+                                 <div class="slds-icon_container">
+                                    <aura:if isTrue="{! and(v.arrowDown, v.strcolLabel==item.fieldPath)}">
+                                        <lightning:icon iconName="utility:arrowdown" size="x-small" alternativeText="Indicates approval"/>
+                                    </aura:if>
+                                    <aura:if isTrue="{! and(v.arrowUp, v.strcolLabel==item.fieldPath)}">
+                                        <lightning:icon iconName="utility:arrowup" size="x-small" alternativeText="Indicates approval"/>
+                                    </aura:if>
+                                </div>
+                            </a>
+                            <span class="slds-assistive-text" aria-live="assertive" aria-atomic="true">Sorted none</span>
+                        </th>
+                    </aura:iteration>
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration items="{!v.lstSObject}" var="row">
+                    <tr class="slds-hint-parent">
+                        <aura:iteration items="{!v.lstFields}" var="field">
+                            <td>
+                                <div class="slds-truncate" title="Company One">
+                                    <c:My_paginationInner strFieldPath="{!field.fieldPath}" strFieldType="{!field.type}" objSingleRecord="{!row}" mappicklistval1="{!v.mappicklistval}"/> 
+                                </div>
+                            </td>                
+                        </aura:iteration>
+                    </tr>	                       
+                </aura:iteration> 
+            </tbody>
+        </table>
+    </div>
+    <footer class="slds-card__footer">
+        <div class="slds-grid slds-grid_align-end">
+            <div class="slds-p-around_xx-small">
+                <lightning:button class="slds-button slds-button_brand " onclick="{!c.first}" disabled="{!v.first}" >First            
+                </lightning:button>
+            </div>
+            <div class="slds-p-top_xx-small ">
+                <lightning:button class="slds-button slds-button_brand " onclick="{!c.previous}" disabled="{!v.prev}">Previous            
+                </lightning:button>
+            </div>
+            <div class="slds-p-around_xx-small slds-p-top_xx-small ">
+                {!v.numerator}/{!v.denominator}
+            </div>
+            <div class="slds-p-around_xx-small">
+                <lightning:button class="slds-button slds-button_brand " onclick="{!c.Next}" disabled="{!v.next}">Next        
+                </lightning:button>
+            </div>
+            <div class="slds-p-top_xx-small ">
+                <lightning:button class="slds-button slds-button_brand" onclick="{!c.last}" disabled="{!v.last}">Last        
+                </lightning:button>
+            </div>
+        </div>
+    </footer>
+</article>
+</aura:component>

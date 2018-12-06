@@ -1,0 +1,6 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+access="global">
+<lightning:overlayLibrary aura:id="overlayLib"/>
+<lightning:button name="cancel" label="Cancel" onclick="{!c.handlecancel}"/>
+<lightning:button name="save" label="Save" onclick="{!c.handlesave}"/>
+</aura:component>

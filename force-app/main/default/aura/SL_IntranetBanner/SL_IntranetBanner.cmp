@@ -1,0 +1,130 @@
+<aura:component controller="IntranetBannerLightningController" implements="flexipage:availableForAllPageTypes,force:appHostable,forceCommunity:availableForAllPageTypes" access="global">
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+    
+    <aura:attribute name="targetfolder" type="String" default="" access="global"/>
+    <aura:attribute name="backgroundcolor" type="String" default="" access="global"/>
+    <aura:attribute name="fontcolor" type="String" default="black" access="global"/>
+    <aura:attribute name="fontstyle" type="String" default="" access="global"/>
+    <aura:attribute name="transitiontype" type="String" access="global"/>
+    <aura:attribute name="trasnitionseconds" type="Integer" default="5" access="global"/>
+    <aura:attribute name="widgetHeight" type="Integer" default="300" access="global"/>
+    <aura:attribute name="widgetWidth" type="Integer" default="500" />    
+    <aura:attribute name="heading" type="String" default="" access="global"/>
+    <aura:attribute name="allowHTMLLinks" type="Boolean" default="false" access="global"/>
+    <aura:attribute name="showborder" type="Boolean" default="false" access="global"/>
+    <aura:attribute name="showthumbnail" type="Boolean" default="false" access="global"/>
+    <aura:attribute name="showdescription" type="Boolean" default="false" access="global"/>
+    <aura:attribute name="ComponentPlacement" type="String" default="Main" access="global"/>
+    <!--
+  	* Commenting this part as said in google Sheets
+    * Might be in use for later point of time
+    <aura:attribute name="descriptionmaxheight" type="Integer" default="20" />
+  	-->
+    <aura:attribute name="noOfThumbNails" type="Integer" default="4" />
+    
+    <aura:attribute name="image1" type="String" access="global"/>
+    <aura:attribute name="description1" type="String" access="global"/>
+    
+    <aura:attribute name="image2" type="String" access="global"/>
+    <aura:attribute name="description2" type="String" access="global"/>
+    
+    <aura:attribute name="image3" type="String" access="global"/>
+    <aura:attribute name="description3" type="String" access="global"/>
+    
+    <aura:attribute name="image4" type="String" access="global"/>
+    <aura:attribute name="description4" type="String" access="global"/>
+    
+    <aura:attribute name="image5" type="String" access="global"/>
+    <aura:attribute name="description5" type="String" access="global"/>
+    
+    <aura:attribute name="spinnerLoad" type="Boolean" default=""/>    
+    <aura:attribute name="result" type="Document[]"/>
+    <aura:attribute name="desc" type="String" default=""/>
+    <aura:attribute name="imageSrc" type="String" />
+    <aura:attribute name="imageId" type="String" />
+    <aura:attribute name="thumbnailResult" type="Document[]"/>
+    <aura:attribute name="startIndex" type="Integer"/>
+    <aura:attribute name="endIndex" type="Integer"/>
+    <aura:attribute name="thumbnailHeight" type="Integer" />
+    <aura:attribute name="thumbnailWidth" type="Integer" />
+    <aura:attribute name="urlDetail" type="String" />
+    
+    <div class="container">
+        <div class="header-label">
+            {!v.heading}
+        </div>
+        
+        <div class="sliderContainer" style="{!'height:' + if(v.showthumbnail, 
+                                            if(v.ComponentPlacement == 'Main', v.widgetHeight + 94, v.widgetHeight + 71), 
+                                            if(v.ComponentPlacement == 'Main', v.widgetHeight + 18, v.widgetHeight + 8)) + 'px; 
+                                            width:100%; 
+                                            border:' + if(v.showborder, '1px solid #DADADA', 'none') + ';
+                                            border-radius:' + if(!v.showborder || v.showdescription, '0px', '.25rem') + ';
+                                            border-top-right-radius:' + if(v.showborder, '.25rem', '') + ';
+                                            border-top-left-radius:' + if(v.showborder, '.25rem', '') + ';
+                                            background:' + if(v.backgroundcolor=='', 'white', v.backgroundcolor) + ';
+                                            padding: 0.25rem;'}">
+            
+            <div class="imageContainer" aura:id="mainImageId" style="{!'width:100%; height:' + v.widgetHeight + 'px;'}">
+                <aura:renderIf isTrue="{!v.targetfolder.length > 0}">
+                    <div class="banner" id="banner" style="{!'width: 100%; height:' + v.widgetHeight + 'px;background-image:url(' + v.urlDetail + v.imageId + ')'}"/>
+                </aura:renderIf>
+                <aura:renderIf isTrue="{!v.targetfolder == '' || v.targetfolder == null}">
+                    <div class="banner" id="banner" style="{!'width: 100%; height:' + v.widgetHeight + 'px;background-image:url(' + v.imageSrc + ')'}"/>
+                </aura:renderIf>                                                
+            </div>
+            <aura:if isTrue="{!v.showthumbnail}" >
+                <aura:renderIf isTrue="{!v.targetfolder == '' || v.targetfolder == null}">
+                    <div style="display:block;" class="slds-m-top--x-small">
+                        <ul style="text-align: center;">
+                            <aura:iteration items="{!v.result}" var="docImage">
+                                <li style="{!'display:inline-block; border:1px solid #50565a; cursor: pointer;'}">
+                                    <div id="{!docImage.src}" class="thumbnails" style="{!'width:' + v.thumbnailWidth + 'px; height:' + v.thumbnailHeight + 'px;background-image:url(' + docImage.src + ')'}" onclick="{!c.changeMainImage}"/>
+                                </li>
+                            </aura:iteration>
+                        </ul>
+                    </div>
+                </aura:renderIf> 
+                <aura:renderIf isTrue="{!v.targetfolder.length > 0}">
+                    <div style="display:block;" class="slds-m-top--xx-small">
+                        <ul style="text-align: center;">
+                            <a aura:id="leftArrowId" class="hideButton" onclick="{!c.getPrev}" style="{!'cursor: pointer; position: relative;' + if(v.ComponentPlacement == 'Main', 'bottom: 2rem;', 'bottom: 1.5rem;')}">
+                                <lightning:icon iconName="utility:chevronleft" size="{!if(v.ComponentPlacement == 'Main', 'small', 'x-small')}" class="slds-icon"/>                            
+                            </a>
+                            <aura:iteration items="{!v.thumbnailResult}" var="docImage">
+                                <li style="{!'display:inline-block; border:1px solid #50565a; cursor: pointer;'}" onclick="{!c.changeMainImage}">
+                                    <div id="{!docImage.Id}" class="thumbnails" style="{!'width:' + v.thumbnailWidth + 'px; height:' + v.thumbnailHeight + 'px;background-image:url(' + v.urlDetail + docImage.Id + ')'}"/>
+                                </li>
+                            </aura:iteration>
+                            <a aura:id="rightArrowId" onclick="{!c.getNext}" style="{!'cursor: pointer; position: relative;' + if(v.ComponentPlacement == 'Main', 'bottom: 2rem;', 'bottom: 1.5rem;')}">
+                                <lightning:icon iconName="utility:chevronright" size="{!if(v.ComponentPlacement == 'Main', 'small', 'x-small')}" class="slds-icon"/>
+                            </a>
+                        </ul>
+                    </div>
+                </aura:renderIf> 
+            </aura:if>
+        </div>
+        <aura:if isTrue="{!v.showdescription}">
+            <span class="feed">
+                <div aura:id="imageDescription" class="imageDescription info fontVal" 
+                     style="{!'border:' + if(v.showborder, '1px solid #DADADA', 'none') + ';
+                            border-top:' + if(v.showborder, 'none', '1px solid #DADADA') + ';
+                            border-bottom-right-radius:' + if(v.showborder, '.25rem', '0px') + ';
+                            border-bottom-left-radius:' + if(v.showborder, '.25rem', '0px') + ';
+                            color:' + v.fontcolor + ';
+                            font-style:' + v.fontstyle + ';
+                            background:' + if(v.backgroundcolor=='', 'white', v.backgroundcolor) + ';'}">
+                    <aura:if isTrue="{!v.allowHTMLLinks}">
+                    	<aura:unescapedHtml value="{!v.desc}"/>
+                        <aura:set attribute="else">
+                        	{!v.desc}
+                        </aura:set>
+                    </aura:if>
+                </div>
+            </span>
+        </aura:if>
+    </div>
+</aura:component>
