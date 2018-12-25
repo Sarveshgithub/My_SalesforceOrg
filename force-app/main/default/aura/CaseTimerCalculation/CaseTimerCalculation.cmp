@@ -9,14 +9,14 @@
 
 
     Counter : {!v.hour} - {!v.min} : {!v.sec}
-    <aura:component>
-    <lightning:card variant="Narrow" title="Narrow Card Header" iconName="standard:account" footer="Card Footer">
+   
+    <lightning:card variant="Narrow" title="Session Timer" iconName="custom:custom25" footer="Card Footer">
         <aura:set attribute="actions">
-            <lightning:buttonIcon iconName="utility:down" variant="border-filled" alternativeText="Show More"/>
+            <lightning:button label="New"/>
         </aura:set>
         <p class="slds-p-horizontal_small">
             Card Body (custom component)
         </p>
     </lightning:card>
-</aura:component>
+
 </aura:component>
