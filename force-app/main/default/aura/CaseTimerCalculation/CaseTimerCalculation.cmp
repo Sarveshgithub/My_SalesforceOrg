@@ -1,0 +1,12 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes">
+<aura:attribute name="hour" type="Integer" />
+<aura:attribute name="min" type="Integer" />
+<aura:attribute name="sec" type="Integer" />
+<aura:attribute name="setIntervalId" type="Integer"/>
+<aura:handler name="init" value="{!this}" action="{!c.initMethod}" />
+<aura:handler event="aura:locationChange" action="{!c.handleDestroy}"/>
+    <aura:handler event="lightning:tabClosed" action="{! c.onTabClosed }"/>
+
+
+    Counter : {!v.hour} - {!v.min} : {!v.sec}
+</aura:component>
