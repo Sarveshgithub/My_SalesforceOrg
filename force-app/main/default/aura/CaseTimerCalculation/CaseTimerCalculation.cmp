@@ -14,13 +14,19 @@
         <aura:set attribute="actions">
             <lightning:button label="New" />
         </aura:set>
-        Counter : {!v.hour} - {!v.min} : {!v.sec}
+        
 
         <div class="slds-p-horizontal_small" style="display:flex">
-            <div style="height:50px; width:50px; display:flex; background:red; border-radius: 50%;">
+            <button style="height:50px; width:50px; display:flex; background:#4bca81; border-radius: 50%; border:none; outline:none;">
                 <span style="margin:auto">
                     <lightning:icon iconName="utility:play" alternativeText="Audio file" />
                 </span>
+            </button>
+            <div style="flex:1; font-size:22pt; padding-left:10px;">
+               0{!v.hour}:0{!v.min}:{!v.sec}
+            </div>
+            <div>
+                Total : 00:00:00
             </div>
         </div>
     </lightning:card>
