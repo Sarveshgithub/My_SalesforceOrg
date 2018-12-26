@@ -8,17 +8,21 @@
     <aura:handler event="lightning:tabClosed" action="{! c.onTabClosed }" />
 
 
-   
 
-    <lightning:card variant="Narrow" title="Session Timer" subtitle="jhg" iconName="custom:custom25" footer="Card Footer">
+
+    <lightning:card variant="Narrow" title="Session Timer" iconName="custom:custom25" footer="Card Footer">
         <aura:set attribute="actions">
             <lightning:button label="New" />
         </aura:set>
         Counter : {!v.hour} - {!v.min} : {!v.sec}
 
-        <p class="slds-p-horizontal_small">
-            Card Body (custom component)
-        </p>
+        <div class="slds-p-horizontal_small" style="display:flex">
+            <div style="height:50px; width:50px; display:flex; background:red; border-radius: 50%;">
+                <span style="margin:auto">
+                    <lightning:icon iconName="utility:play" alternativeText="Audio file" />
+                </span>
+            </div>
+        </div>
     </lightning:card>
 
 </aura:component>
