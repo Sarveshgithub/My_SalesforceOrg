@@ -32,6 +32,10 @@
         cmp.set("v.setIntervalId", interval);
 
     },
+    playPause: function(cmp,evt,h) {
+        cmp.set('v.play_pause', cmp.get('v.play_pause') ? false : true);
+        
+    },
     handleDestroy: function (cmp, evt, h) {
         localStorage.setItem("hour", cmp.get("v.hour"));
         localStorage.setItem("min", cmp.get("v.min"));
