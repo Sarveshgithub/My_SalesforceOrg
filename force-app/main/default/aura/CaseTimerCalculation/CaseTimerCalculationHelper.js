@@ -1,5 +1,12 @@
 ({
     timer: function(cmp, evt, help) {
+        setTimeout(function() {
+            var unsaved = cmp.find("unsaved");
+            unsaved.setUnsavedChanges(true, {
+                label: 'Your Session are unsaved'
+            });
+        }, 1000);
+        
         var h = 0,
             m = 0,
             s = 0;
@@ -27,7 +34,7 @@
         let methodName = 'c.totalTime',
             params = {
                 'recId': cmp.get('v.recordId'),
-                'CurrLookup': 'Case__c'
+                'CurrLookup': cmp.get('v.Lookup')
             },
             callbackRess = (response) => {
                 if (response) {
@@ -56,7 +63,7 @@
         let methodName = 'c.fetchSession',
             params = {
                 'recId': cmp.get('v.recordId'),
-                'CurrLookup': 'Case__c'
+                'CurrLookup': cmp.get('v.Lookup')
             },
             callbackRess = (response) => {
                 if (response) {
@@ -81,12 +88,35 @@
             }
         this.callApexMethod(cmp, methodName, params, callbackRess);
     },
+    createCustomSession: function(cmp, evt, help, timer, date) {
+        let lookup = cmp.get('v.Lookup'),
+            jsonSession = {
+                'Session_Owner__c': cmp.get('v.ownerId'),
+                'Time__c': timer,
+                'Date__c': date,
+                [lookup]: cmp.get('v.recordId')
+            },
+            methodName = 'c.createSession',
+            params = {
+                'jsonstr': JSON.stringify(jsonSession)
+            },
+            callbackRess = (response) => {
+                if (response) {
+                    var unsaved = cmp.find("unsaved");
+                    this.loadSessionData(cmp, evt, help);
+                    cmp.set('v.totaltime', this.addTimes(cmp.get('v.totaltime'), timer));
+                    this.showToast('Success!!', 'Session recorded', 'success');
+                    cmp.set('v.isLoading', false);
+                }
+            }
+        this.callApexMethod(cmp, methodName, params, callbackRess);
+    },
     createSession: function(cmp, evt, help) {
         let timezone = $A.get("$Locale.timezone"),
             mydate = new Date().toLocaleString("en-US", {
                 timeZone: timezone
             });
-        var lookup = cmp.get('v.curLookup');
+        var lookup = cmp.get('v.Lookup');
         let arrdate = mydate.split(',')[0].split('/'),
             strdate = arrdate[2] + '-' + arrdate[0] + '-' + arrdate[1],
             jsonSession = {
