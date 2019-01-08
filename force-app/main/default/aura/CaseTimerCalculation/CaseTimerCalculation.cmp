@@ -1,80 +1,36 @@
-<aura:component controller='SessionTimer' implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId,flexipage:availableForRecordHome" access="global">
-    <aura:attribute name="timer" type="String" default="00:00:00"/>
-    <aura:attribute name="totaltime" type="String" default="00:00:00"/>
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes">
+    <aura:attribute name="hour" type="Integer" />
+    <aura:attribute name="min" type="Integer" />
+    <aura:attribute name="sec" type="Integer" />
     <aura:attribute name="setIntervalId" type="Integer" />
-    <aura:attribute name="recordId" type="Id" />
-    <aura:attribute name="ownerId" type="Id" />
-    <aura:attribute name="isLoading" type="Boolean" default="false"/>
-    <aura:attribute name="isShow" type="Boolean" default="false"/>
-    <aura:attribute name="data" type="Object"/>
-    <aura:attribute name="columns" type="List"/> 
-    <!-- design attribute -->
-	<aura:attribute name="autostart" type="Boolean" default="false"/>
-    <aura:attribute name="showTimer" type="Boolean" default="false"/>
-    <aura:attribute name="play_pause" type="Boolean" default="false"/>
-    <aura:attribute name="customEntry" type="Boolean" default="false"/>
-    <aura:attribute name="Lookup" type="String" default="Case__c"/>
+    <aura:attribute name="play_pause" type="Boolean" default="false"/>    
     <aura:handler name="init" value="{!this}" action="{!c.initMethod}" />
-    
-    <lightning:unsavedChanges aura:id="unsaved"
-                              onsave="{!c.handleSave}"
-                              ondiscard="{!c.handleDiscard}" />
-    
-    <aura:if isTrue="{! v.isLoading }">
-        <lightning:spinner alternativeText="Loading" />
-    </aura:if>
-    <lightning:card variant="Narrow" title="Session Timer" iconName="custom:custom25" >
-        
-            <aura:set attribute="actions">
-                <aura:if isTrue="{!v.customEntry}">
-                	<lightning:button label="New" onclick="{!c.showModal}"/>
-                </aura:if>
-            </aura:set>
-        
-        <div style="display:flex; padding-bottom:10px;">
-            <aura:if isTrue="{!v.showTimer}">
-            <button class="{!v.play_pause ? 'pause' : 'play'}" onclick="{!c.playPause}">
+    <aura:handler event="aura:locationChange" action="{!c.handleDestroy}" />
+    <aura:handler event="lightning:tabClosed" action="{! c.onTabClosed }" />
+
+
+
+
+    <lightning:card variant="Narrow" title="Session Timer" iconName="custom:custom25" footer="Card Footer">
+        <aura:set attribute="actions">
+            <lightning:button label="New" />
+        </aura:set>
+
+
+        <div class="slds-p-horizontal_small" style="display:flex">
+            <button style="height:50px; width:50px; display:flex; border-radius: 50%; border:none; outline:none;" onclick="{!c.playPause}">
                 <span style="margin:auto">
                     <!-- <aura:if isTrue=""></aura:if> -->
                     <lightning:icon iconName="{!v.play_pause ? 'utility:play' : 'utility:pause'}" />
                 </span>
             </button>
             <div style="flex:1; font-size:22pt; padding-left:10px;">
-                {!v.timer}
+                0{!v.hour}:0{!v.min}:{!v.sec}
             </div>
-            </aura:if>    
             <div>
-                <p>Total</p>
-                <p style="font-size: 22px;color: #004487;">
-                    {!v.totaltime}
-                </p>
+                Total : 00:00:00
             </div>
         </div>
-        
-        <lightning:datatable
-                             keyField="id"
-                             data="{! v.data }"
-                             columns="{! v.columns }"
-                             hideCheckboxColumn="true"/>
-        
     </lightning:card>
-    <!--slds modal -->
-    <div style="{!v.isShow == true ? 'height: 640px;' : 'display:none;'}" >
-        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
-            <div class="slds-modal__container">
-                <header class="slds-modal__header">
-                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Session Time</h2>
-                </header>
-                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-                   <lightning:input aura:id="c_time" type="text" required="true" label="Session Time" placeholder="00:00:00" maxlength="8" /> 
-                   <lightning:input aura:id="c_date" required="true" type="date" name="input1" label="Enter a date" placeholder="Choose Date"/>
-                </div>
-                <footer class="slds-modal__footer">
-                    <button class="slds-button slds-button_neutral" onclick="{!c.showModal}">Cancel</button>
-                    <button class="slds-button slds-button_brand" onclick="{!c.customSession}">Save</button>
-                </footer>
-            </div>
-        </section>
-        <div class="slds-backdrop slds-backdrop_open"></div>
-    </div>
+
 </aura:component>
