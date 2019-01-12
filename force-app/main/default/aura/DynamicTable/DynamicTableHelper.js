@@ -4,7 +4,8 @@
         let methodName = 'c.fetchContact',
             params = {
                 'strSObjectName': cmp.get('v.object'),
-                'strFieldsetName': cmp.get('v.fieldSetName')
+                'strFieldsetName': cmp.get('v.fieldSetName'),
+                'filter':cmp.get('v.filter')
             },
             // This is callback function for handling Response
             callback = (response) => {

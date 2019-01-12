@@ -32,7 +32,7 @@ public class My_pagination {
     
     
     @AuraEnabled
-    public static ResultWrapper  fetchContact( String strSObjectName, String strFieldsetName)
+    public static ResultWrapper  fetchContact( String strSObjectName, String strFieldsetName, String filter)
     {
         
         Set<String> setFieldsToQuery = new set<String>();
@@ -48,7 +48,7 @@ public class My_pagination {
         setFieldsToQuery.remove('id');
         queryString += String.join( new List<String>(setFieldsToQuery), ',');
         queryString.removeEnd(',');
-        queryString += ' FROM ' + strSObjectName;
+        queryString += ' FROM ' + strSObjectName+' WHERE '+filter;
         System.debug('queryString::'+queryString);
         list<SObject> lstSObject = Database.query(queryString);
         System.debug('lstSObject::'+lstSObject);
