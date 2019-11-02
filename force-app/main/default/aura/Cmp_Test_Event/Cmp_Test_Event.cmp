@@ -1,9 +1,0 @@
-<!--c:ceNotifier-->
-<aura:component >
-    <aura:registerEvent name="cmpEvent" type="c:App_Test_Event"/>
-
-    <h1>Simple Component Event Sample</h1>
-    <p><lightning:button label="Click here to fire a component event"
-        onclick="{!c.fireComponentEven}" />
-    </p>
-</aura:component>

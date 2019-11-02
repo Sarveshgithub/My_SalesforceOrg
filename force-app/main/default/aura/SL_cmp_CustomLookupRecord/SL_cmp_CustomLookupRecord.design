@@ -1,3 +1,0 @@
-<design:component >
-    <design:attribute label="Enter the lookup field" required="true" name="objectAPIName"/>
-</design:component>

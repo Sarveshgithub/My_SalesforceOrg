@@ -1,0 +1,41 @@
+=== Test Reports
+FORMAT  FILE
+──────  ──────────────────────────────────────────────────────────────────────────────────────────────────────────────
+txt     c:\Sarvesh_workspace\SL_Projects\My_Dev_Org\.sfdx\tools\testresults\apex\test-result.txt
+txt     c:\Sarvesh_workspace\SL_Projects\My_Dev_Org\.sfdx\tools\testresults\apex\test-run-id.txt
+junit   c:\Sarvesh_workspace\SL_Projects\My_Dev_Org\.sfdx\tools\testresults\apex\test-result-7070o0000CE6Akx-junit.xml
+json    c:\Sarvesh_workspace\SL_Projects\My_Dev_Org\.sfdx\tools\testresults\apex\test-result-7070o0000CE6Akx.json
+json    c:\Sarvesh_workspace\SL_Projects\My_Dev_Org\.sfdx\tools\testresults\apex\test-result-codecoverage.json
+
+=== Apex Code Coverage
+ID                  NAME            % COVERED  UNCOVERED LINES
+──────────────────  ──────────────  ─────────  ───────────────
+01p0o00000GzTorAAF  AccountService  100%
+
+=== Test Results
+TEST NAME                                 OUTCOME  MESSAGE  RUNTIME (MS)
+────────────────────────────────────────  ───────  ───────  ────────────
+AccountServiceTest.should_create_account  Pass              432
+
+=== Test Summary
+NAME                 VALUE
+───────────────────  ──────────────────────────────────────────────────
+Outcome              Passed
+Tests Ran            1
+Passing              1
+Failing              0
+Skipped              0
+Pass Rate            100%
+Fail Rate            0%
+Test Start Time      Jul 5, 2019 4:37 PM
+Test Execution Time  432 ms
+Test Total Time      432 ms
+Command Time         9643 ms
+Hostname             https://mass-edit-lookup-dev-ed.my.salesforce.com
+Org Id               00D0o000001Bxk7EAC
+Username             sarveshkumar574@gmail.com
+Test Run Id          7070o0000CE6Akx
+User Id              0050o00000VKYKuAAP
+Test Run Coverage    100%
+Org Wide Coverage    5%
+

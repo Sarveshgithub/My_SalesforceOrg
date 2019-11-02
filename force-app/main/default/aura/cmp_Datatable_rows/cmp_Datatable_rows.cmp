@@ -1,8 +1,0 @@
-<aura:component >
-	
-    <aura:attribute name="rows" type="object[]" />
-    <aura:attribute name="fieldName" type="List" />
-    <aura:attribute name="data" type="String" />
-    <aura:handler action="{!c.doInit}" name="init" value="{!this}"/>
-    {!v.data}
-</aura:component>

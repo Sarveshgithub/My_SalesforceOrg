@@ -1,0 +1,71 @@
+<aura:component controller="reUsableMultiSelectLookupCtrl"
+    implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+    access="global">
+
+
+    <!--declare attributes-->
+    <aura:attribute name="lstSelectedRecords" type="sObject[]" default="[]"
+        description="Use,for store SELECTED sObject Records" />
+    <aura:attribute name="lstAPIoption" type="List" description="Store API option" />
+    <aura:attribute name="lstAPIsearchOption" type="List" />
+    <aura:attribute name="SearchKeyWord" type="string" />
+    <aura:attribute name="objectAPIName" type="string" default="account" />
+    <aura:attribute name="IconName" type="string" default="standard:account" />
+    <aura:attribute name="label" type="string" default="Account Name" />
+    <!--declare events hendlers-->
+    <aura:handler name="oSelectedRecordEvent" event="c:selectedsObjectRecordsEvent"
+        action="{!c.handleComponentEvent}" />
+    <aura:attribute name="Message" type="String" default="" />
+    <aura:attribute name="options" type="List" default="[
+                                                        {'label': 'Account', 'value': 'Account'},
+                                                        {'label': 'Contact', 'value': 'Contact'},
+                                                        {'label': 'Lead', 'value': 'Lead'},]" />
+    <aura:attribute name="json" type="Object" />
+
+    <!-- https://www.lightningdesignsystem.com/components/lookups/ -->
+
+    <div onmouseleave="{!c.onblur}" aura:id="searchRes" class="slds-form-element slds-lookup slds-is-close"
+        style="display:flex; align-items: flex-end;">
+        <!-- <label class="slds-form-element__label">{!v.label}</label>-->
+        <div style="flex:0.5;">
+            <lightning:combobox aura:id="objName" label="Select Object" value="Contact" placeholder="Select Object"
+                options="{! v.options }" onchange="{!c.handleChange}" />
+        </div>
+        <!--This part is for display search bar for lookup-->
+        <div class="slds-form-element__control" style="flex:1;">
+
+            <div class="slds-input-has-icon slds-input-has-icon--right">
+                <!-- This markup is for when an record is selected -->
+                <div aura:id="lookup-pill" style="padding:0rem; border:none;" class="slds-pill-container">
+                    <div aura:id="lookupField"
+                        class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right"
+                        style=" width: 100%;">
+
+                        <ui:inputText click="{!c.onfocus}" updateOn="keyup" keyup="{!c.keyPressController}"
+                            class="slds-lookup__search-input slds-input inputSize" value="{!v.SearchKeyWord}"
+                            placeholder="search.." />
+
+                        <span class="goBtn" onclick="{!c.sendTickerFilters}"> GO </span>
+                    </div>
+                    <!--Selected Records Pills Section-->
+
+                </div>
+            </div>
+
+
+            <!--This part is for Display typehead lookup result List-->
+
+            <ul style="min-height:40px;margin-top:0px !important"
+                class="slds-listbox slds-listbox_vertical slds-dropdown slds-dropdown_fluid slds-lookup__menu slds"
+                role="listbox">
+                <lightning:spinner class="slds-hide" variant="brand" size="small" aura:id="mySpinner" />
+                <center> {!v.Message}</center>
+                <aura:iteration items="{!v.lstAPIsearchOption}" var="singleRec">
+                    <!--Child Component-->
+                    <c:reUsableMultiSelectLookupResult oRecord="{!singleRec}" IconName="{!v.IconName}" />
+                </aura:iteration>
+            </ul>
+
+        </div>
+    </div>
+</aura:component>

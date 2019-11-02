@@ -1,0 +1,3 @@
+<aura:event type="COMPONENT" description="Fires this event when some value is selected or removed from the Lookup box.">
+    <aura:attribute name="lstSelectedValues" type="Object[]"/>
+</aura:event>

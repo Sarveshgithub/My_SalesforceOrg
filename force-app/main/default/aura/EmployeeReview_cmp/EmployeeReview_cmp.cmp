@@ -1,0 +1,36 @@
+<aura:component controller="EmployeeReview_cnrl"
+    implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+    access="global">
+    <aura:attribute name="empDetail" type="Object" />
+    <!-- 1st component -->
+    <aura:attribute name="selection" type="List" default="[]" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_1-of-6 centerButton">
+            <lightning:button label="Prev" onclick="{!c.prev}"
+                class="{!v.empDetail.currentScreen == 'searchProject' ? 'hide' : 'show'}" iconName="utility:chevronleft"
+                iconPosition="left" variant="brand" />
+        </div>
+        <div class="slds-col slds-size_4-of-6">
+            <div style="height: 15%" class="centerContent">
+                <h1 style="font-size: 2em;">
+                    {!v.empDetail.currentTitle}
+                </h1>
+            </div>
+            <div style="height: 85%">
+                <div class="{!v.empDetail.currentScreen == 'searchProject' ? 'show' : 'hide'}">
+                    <c:ERSearchProject_cmp selection="{!v.selection}" />
+                </div>
+                <div class="{!v.empDetail.currentScreen == 'selectEmp' ? 'show' : 'hide'}">
+                    <c:ERSelectEmployee_cmp selection="{!v.selection}" empDetail="{!v.empDetail}"/>
+                </div>
+            </div>
+        </div>
+        <div class="slds-col slds-size_1-of-6 centerButton">
+            <lightning:button label="Next" onclick="{!c.next}" disabled="{!v.selection.length == 0}"
+                iconName="utility:chevronright" iconPosition="right" variant="brand" />
+        </div>
+    </div>
+
+
+</aura:component>

@@ -1,0 +1,35 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "paths": {
+            "c/apexWireMethodToProperty": [
+                "apexWireMethodToProperty/apexWireMethodToProperty.js"
+            ],
+            "c/errorPanel": [
+                "errorPanel/errorPanel.js"
+            ],
+            "c/helloWorld": [
+                "helloWorld/helloWorld.js"
+            ],
+            "c/ldsUtils": [
+                "ldsUtils/ldsUtils.js"
+            ],
+            "c/lwc_Hello": [
+                "lwc_Hello/lwc_Hello.js"
+            ],
+            "c/lwc_OnchangeEvent": [
+                "lwc_OnchangeEvent/lwc_OnchangeEvent.js"
+            ]
+        }
+    },
+    "include": [
+        "**/*",
+        "../../../../.sfdx/typings/lwc/**/*.d.ts"
+    ],
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
+    }
+}

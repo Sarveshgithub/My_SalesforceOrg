@@ -1,8 +1,0 @@
-<aura:component >
-    <aura:handler name="init" value="{!this}" action="{!c.onLoad}"/>
-    <aura:attribute name="Color" type="String"/>
-    <aura:attribute name="colorLeadSource" type="String"/>
-    <div class="slds-truncate"  title="{!v.colorLeadSource}">
-        <span class="slds-badge" style="{! 'background-color: ' + v.Color}"> {!v.colorLeadSource}</span>
-    </div>
-</aura:component>

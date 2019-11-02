@@ -1,4 +1,0 @@
-<design:component >
-    <design:attribute name="Header" label="Header please ?" required="true" description="The Header for the Page"/>
-    <design:attribute name="SubHeader" label="Sub-Header please ?" description="The Sub-Header for the Page"/>
-</design:component>

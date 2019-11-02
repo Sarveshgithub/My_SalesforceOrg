@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+    <testsuite name="force.apex" timestamp="2019-07-05T16:33:29+05:30" hostname="https://mass-edit-lookup-dev-ed.my.salesforce.com" tests="1" failures="1"  errors="0"  time="0.13">
+        <properties>
+            <property name="outcome" value="Failed"/>
+            <property name="testsRan" value="1"/>
+            <property name="passing" value="0"/>
+            <property name="failing" value="1"/>
+            <property name="skipped" value="0"/>
+            <property name="passRate" value="0%"/>
+            <property name="failRate" value="100%"/>
+            <property name="testStartTime" value="Jul 5, 2019 4:33 PM"/>
+            <property name="testExecutionTime" value="0.13 s"/>
+            <property name="testTotalTime" value="0.13 s"/>
+            <property name="commandTime" value="7.68 s"/>
+            <property name="hostname" value="https://mass-edit-lookup-dev-ed.my.salesforce.com"/>
+            <property name="orgId" value="00D0o000001Bxk7EAC"/>
+            <property name="username" value="sarveshkumar574@gmail.com"/>
+            <property name="testRunId" value="7070o0000CE6A7s"/>
+            <property name="userId" value="0050o00000VKYKuAAP"/>
+            <property name="testRunCoverage" value="100%"/>
+            <property name="orgWideCoverage" value="5%"/>
+        </properties>
+        <testcase name="should_create_account" classname="AccountServiceTest" time="0.13">
+            <failure message="System.AssertException: Assertion Failed: incorrect ticker symbol: Expected: CRM, Actual: SFDC"><![CDATA[Class.AccountServiceTest.should_create_account: line 17, column 1]]></failure>
+        </testcase>
+    </testsuite>
+</testsuites>

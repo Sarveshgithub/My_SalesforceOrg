@@ -1,0 +1,24 @@
+<aura:component controller="EmployeeReview_cnrl">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="oUser" type="user" default="{'sobjectType' : 'User'}" />
+    <aura:attribute name="empDetail" type="Object" />
+    <!-- 1st component -->
+    <aura:attribute name="selection" type="List" default="[]" />
+    <div class="slds-grid slds-wrap" style="display: flex;">
+        <aura:iteration items="1,2,3,4,5,6,7,8,9" var="item">
+            <!-- one avator -->
+            <div class="slds-col slds-size_1-of-4" style="padding-bottom: .75rem;">
+                <div class="card" onclick="">
+                    <div>
+                        <lightning:avatar variant="circle" src="{!v.oUser.SmallPhotoUrl}"
+                            fallbackIconName="standard:user" class="slds-m-right_small" size="xx-large" />
+                        <div>
+                            <h4><b>Sarvesh Kumar</b></h4>
+                            <p>Developer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aura:iteration>
+    </div>
+</aura:component>

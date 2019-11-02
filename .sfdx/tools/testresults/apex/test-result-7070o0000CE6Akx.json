@@ -1,0 +1,111 @@
+{
+    "summary": {
+        "outcome": "Passed",
+        "testsRan": 1,
+        "passing": 1,
+        "failing": 0,
+        "skipped": 0,
+        "passRate": "100%",
+        "failRate": "0%",
+        "testStartTime": "Jul 5, 2019 4:37 PM",
+        "testExecutionTime": "432 ms",
+        "testTotalTime": "432 ms",
+        "commandTime": "9643 ms",
+        "hostname": "https://mass-edit-lookup-dev-ed.my.salesforce.com",
+        "orgId": "00D0o000001Bxk7EAC",
+        "username": "sarveshkumar574@gmail.com",
+        "testRunId": "7070o0000CE6Akx",
+        "userId": "0050o00000VKYKuAAP",
+        "testRunCoverage": "100%",
+        "orgWideCoverage": "5%"
+    },
+    "tests": [
+        {
+            "attributes": {
+                "type": "ApexTestResult",
+                "url": "/services/data/v46.0/tooling/sobjects/ApexTestResult/07M0o000007Q4zXEAS"
+            },
+            "Id": "07M0o000007Q4zXEAS",
+            "QueueItemId": "7090o000000yKJ4AAM",
+            "StackTrace": null,
+            "Message": null,
+            "AsyncApexJobId": "7070o0000CE6AkxAQF",
+            "MethodName": "should_create_account",
+            "Outcome": "Pass",
+            "ApexClass": {
+                "attributes": {
+                    "type": "ApexClass",
+                    "url": "/services/data/v46.0/tooling/sobjects/ApexClass/01p0o00000GzTowAAF"
+                },
+                "Id": "01p0o00000GzTowAAF",
+                "Name": "AccountServiceTest",
+                "NamespacePrefix": null
+            },
+            "RunTime": 432,
+            "FullName": "AccountServiceTest.should_create_account"
+        }
+    ],
+    "coverage": {
+        "coverage": [
+            {
+                "id": "01p0o00000GzTorAAF",
+                "name": "AccountService",
+                "totalLines": 6,
+                "lines": {
+                    "2": 1,
+                    "3": 1,
+                    "4": 1,
+                    "5": 1,
+                    "6": 1,
+                    "8": 1
+                },
+                "totalCovered": 6,
+                "coveredPercent": 100
+            }
+        ],
+        "records": [
+            {
+                "attributes": {
+                    "type": "ApexCodeCoverage",
+                    "url": "/services/data/v46.0/tooling/sobjects/ApexCodeCoverage/7140o00000L5j66AAB"
+                },
+                "ApexTestClass": {
+                    "attributes": {
+                        "type": "ApexClass",
+                        "url": "/services/data/v46.0/tooling/sobjects/ApexClass/01p0o00000GzTowAAF"
+                    },
+                    "Id": "01p0o00000GzTowAAF",
+                    "Name": "AccountServiceTest"
+                },
+                "Coverage": {
+                    "coveredLines": [
+                        2,
+                        3,
+                        4,
+                        5,
+                        6,
+                        8
+                    ],
+                    "uncoveredLines": []
+                },
+                "TestMethodName": "should_create_account",
+                "NumLinesCovered": 6,
+                "ApexClassOrTrigger": {
+                    "attributes": {
+                        "type": "Name",
+                        "url": "/services/data/v46.0/tooling/sobjects/ApexClass/01p0o00000GzTorAAF"
+                    },
+                    "Id": "01p0o00000GzTorAAF",
+                    "Name": "AccountService"
+                },
+                "NumLinesUncovered": 0
+            }
+        ],
+        "summary": {
+            "totalLines": 6,
+            "coveredLines": 6,
+            "testRunCoverage": "100%",
+            "orgWideCoverage": "5%"
+        }
+    }
+}
