@@ -20,6 +20,12 @@
             ],
             "c/lwc_OnchangeEvent": [
                 "lwc_OnchangeEvent/lwc_OnchangeEvent.js"
+            ],
+            "c/LightningDatatable": [
+                "LightningDatatable/LightningDatatable.js"
+            ],
+            "c/lightningDatatable": [
+                "lightningDatatable/lightningDatatable.js"
             ]
         }
     },
