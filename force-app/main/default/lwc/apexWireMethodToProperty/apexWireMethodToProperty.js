@@ -4,5 +4,12 @@ import getAccountRelatedContact from '@salesforce/apex/ContactController.getAcco
 
 export default class ApexWireMethodToProperty extends LightningElement {
     @track conData;
-    @wire(getAccountRelatedContact) accounts;
+    @wire(getAccountRelatedContact) accounts({ error, data }) {
+        if (data) {
+            console.log(data)
+        }
+        else if (error) {
+            console.log(error)
+        }
+    }
 }
