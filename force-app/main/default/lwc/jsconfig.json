@@ -15,17 +15,14 @@
             "c/ldsUtils": [
                 "ldsUtils/ldsUtils.js"
             ],
+            "c/lightningDatatable": [
+                "lightningDatatable/lightningDatatable.js"
+            ],
             "c/lwc_Hello": [
                 "lwc_Hello/lwc_Hello.js"
             ],
             "c/lwc_OnchangeEvent": [
                 "lwc_OnchangeEvent/lwc_OnchangeEvent.js"
-            ],
-            "c/LightningDatatable": [
-                "LightningDatatable/LightningDatatable.js"
-            ],
-            "c/lightningDatatable": [
-                "lightningDatatable/lightningDatatable.js"
             ]
         }
     },
