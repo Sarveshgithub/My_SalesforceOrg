@@ -1,5 +1,5 @@
-import { LightningElement,wire ,track} from "lwc";
-import getAccountList from '@salesforce/apex/LWCLightningDataTable_Cntrl.fetchAccountDetails';
+import { LightningElement, wire, track } from "lwc";
+import getAccountList from "@salesforce/apex/LWCLightningDataTable_Cntrl.fetchAccountDetails";
 
 const columns = [
   { label: "Name", fieldName: "Name" },
@@ -10,14 +10,11 @@ const columns = [
 export default class LightningDatatable extends LightningElement {
   @track columns = columns;
   @track data = [];
-  //@wire property to call apex 
+  //@wire property to call apex
   @wire(getAccountList) accounts({ error, data }) {
     if (data) {
-      this.data = data
-        console.log(JSON.parse(JSON.stringify(data)))
+      this.data = data;
+    } else if (error) {
     }
-    else if (error) {
-        console.log(error)
-    }
-}
+  }
 }
