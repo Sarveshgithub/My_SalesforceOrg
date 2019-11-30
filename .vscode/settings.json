@@ -1,6 +1,6 @@
 {
     "salesforcedx-vscode-apex.java.home": "C:\\Program Files (x86)\\Java\\jdk1.8.0_201",
-    "eslint.nodePath": "c:\\Users\\Sarvesh Kumar\\.vscode\\extensions\\salesforce.salesforcedx-vscode-lwc-47.4.0\\node_modules",
+    "eslint.nodePath": "c:\\Users\\Sarvesh Kumar\\.vscode\\extensions\\salesforce.salesforcedx-vscode-lwc-47.6.0\\node_modules",
     "html.suggest.angular1": false,
     "html.suggest.ionic": false,
     "salesforcedx-vscode-core.retrieve-test-code-coverage": true
