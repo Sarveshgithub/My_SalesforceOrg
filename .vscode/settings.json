@@ -1,7 +1,19 @@
 {
-    "salesforcedx-vscode-apex.java.home": "C:\\Program Files (x86)\\Java\\jdk1.8.0_201",
-    "eslint.nodePath": "c:\\Users\\Sarvesh Kumar\\.vscode\\extensions\\salesforce.salesforcedx-vscode-lwc-47.6.0\\node_modules",
+    // C:\\Program Files\\AdoptOpenJDK\\jdk-11.0.5.10-hotspot
+    "salesforcedx-vscode-apex.java.home": "C:\\Program Files\\AdoptOpenJDK\\jdk-11.0.5.10-hotspot",
     "html.suggest.angular1": false,
     "html.suggest.ionic": false,
-    "salesforcedx-vscode-core.retrieve-test-code-coverage": true
-}
+    "salesforcedx-vscode-core.retrieve-test-code-coverage": true,
+    "uncrustify.langOverrides": {
+      "apex": "JAVA"
+    },
+    "salesforcedx-vscode-core.show-cli-success-msg": false,
+    "workbench.colorCustomizations": {
+      "activityBar.background": "#4e483a"
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/bower_components": true,
+      "**/.sfdx": true
+    },
+  }
